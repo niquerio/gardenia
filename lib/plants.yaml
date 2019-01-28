@@ -1,0 +1,10 @@
+- name: 'Broccoli'
+  germination_rate: 0.5
+  transplant_week: 1
+  steps:
+  - type: first_flat_1
+    weeks: 3
+  - type: second_flat
+    weeks: 3 
+    depth: 6
+    spacing: 2
