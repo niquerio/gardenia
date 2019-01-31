@@ -1,5 +1,6 @@
 require_relative './plant.rb'
 require 'yaml'
+require 'csv'
 class Gardenia 
 	attr_reader :plants
   def initialize(input:, output:, plants:)

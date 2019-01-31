@@ -5,18 +5,19 @@ ENV['BUNDLE_GEMFILE'] ||= File.expand_path("../../Gemfile", Pathname.new(__FILE_
 $LOAD_PATH.unshift File.expand_path('../../lib', Pathname.new(__FILE__).realpath)
 require 'bundler/setup'
 require 'optparse'
+require 'gardenia'
 
 plants_file = File.join((File.expand_path('..',__dir__)), 'lib', 'plants.yaml')
 options = {input: '', output: './schedule.txt', plants: plants_file}
 
 OptionParser.new do |opts|
-  opts.on("-i", "--input InputFile", "Path to input file") do |input|
+  opts.on("-i", "--input InputFile", "Path to input file; REQUIRED") do |input|
     options[:input] = input  
   end
-  opts.on("-o", "--output OutputFile", "Path to output file") do |output|
+  opts.on("-o", "--output OutputFile", "Path to output file; Default: './schedule.txt'") do |output|
     options[:output] = output
   end
-  opts.on("-p", "--plants PlantsFile", "Path to plants file") do |plants|
+  opts.on("-p", "--plants PlantsFile", "Path to plants file; Default: '$GardeniaHome/lib/plants.yaml'") do |plants|
    options[:plants] = plants
   end
   opts.on("-h", "--help", "Prints this help") do
@@ -24,4 +25,4 @@ OptionParser.new do |opts|
     exit
   end
 end.parse!
-puts options
+Gardenia.new(input: options[:input], output: options[:output], plants: options[:plants]).run
