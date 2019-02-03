@@ -1,0 +1,9 @@
+<%- @weeks.each do |week| -%>
+<%=week%>
+  <%- week.categories.each do |cat| -%>
+  <%= cat %>
+    <%- cat.tasks.each do |task| -%>
+    <%= task %>
+    <%- end -%>
+  <%- end -%>
+<%- end -%>

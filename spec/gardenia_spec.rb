@@ -51,21 +51,6 @@ describe PlantsParser do
     end
   end
 end
-describe Calendar do
-  context "add_plant broccoli" do
-    before(:each) do
-      @broc = PlantsParser.new('./spec/fixtures/broccoli.yaml').plants['broccoli']
-      @calendar = Calendar.new
-      @calendar.add_plant(plant: @broc, num: 2)
-    end
-    it "it has appropriate number weeks" do
-      expect(@calendar.weeks.length).to eq(4)
-    end 
-    it "spits out appropriate text with to_s" do
-      expect(@calendar.to_s).to eq(File.read('./spec/fixtures/good_output.txt'))
-    end
-  end
-end
 describe GardenWeek do
   it "returns last frost date of May 3" do
     last_frost = Date.parse("May 3, #{Date.today.year}")
