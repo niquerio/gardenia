@@ -1,0 +1,31 @@
+Week of March 29
+  Start seedlings in flats
+    broccoli: 3 seeds at 1 in. spacing
+Week of April 19
+  Prick out seedlings into flats
+    broccoli: 2+ seedlings at 2 in. spacing in 6 in. deep flats
+Week of May 3
+  Start seedlings in flats
+    aardvark_plant: 1 seeds at 1 in. spacing
+    badger_plant: 1 seeds at 1 in. spacing
+  Harden off
+    broccoli: 2 seedlings
+Week of May 10
+  Start seedlings in flats
+    cat_plant: 1 seeds at 1 in. spacing
+  Prick out seedlings into flats
+    badger_plant: 1+ seedlings at 2 in. spacing in 6 in. deep flats
+  Harden off
+    aardvark_plant: 1 seedlings
+  Transplant
+    broccoli: 2 seedlings
+Week of May 17
+  Harden off
+    badger_plant: 1 seedlings
+    cat_plant: 1 seedlings
+  Transplant
+    aardvark_plant: 1 seedlings
+Week of May 24
+  Transplant
+    badger_plant: 1 seedlings
+    cat_plant: 1 seedlings

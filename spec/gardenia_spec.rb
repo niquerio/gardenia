@@ -4,21 +4,47 @@ require 'date'
 require 'fileutils'
 require_relative '../lib/gardenia.rb'
 describe Gardenia do
-  before(:each) do
-    @gardenia = Gardenia.new(input: './spec/fixtures/broccoli_input.csv', output: 'my_output.txt', plants: './spec/fixtures/broccoli.yaml')
+ context "broccoli -- simple example" do
+    before(:each) do
+      @gardenia = Gardenia.new(input: './spec/fixtures/broccoli_input.csv', output: 'my_output.txt', plants: './spec/fixtures/broccoli.yaml')
+    end
+	  after(:each) do
+	  	File.delete('./my_output.txt') if File.exists?('./my_output.txt')
+	  end
+    it 'returns a schedule for good input' do
+      @gardenia.run
+      expect(File.read('./my_output.txt')).to eq(File.read('./spec/fixtures/broccoli_output.txt'))
+    end 
+    it 'has a plants hash' do
+      expect(@gardenia.plants.class.to_s).to eq('Hash')
+    end
+    it 'has a plants hash that containts Plants' do
+      expect(@gardenia.plants['broccoli'].class.to_s).to eq('Plant')
+    end
   end
-	after(:each) do
-		File.delete('./my_output.txt') if File.exists?('./my_output.txt')
-	end
-  it 'returns a schedule for good input' do
-    @gardenia.run
-    expect(File.read('./my_output.txt')).to eq(File.read('./spec/fixtures/good_output.txt'))
-  end 
-  it 'has a plants hash' do
-    expect(@gardenia.plants.class.to_s).to eq('Hash')
+  context "lettuce -- broadcast example" do
+    before(:each) do
+      @gardenia = Gardenia.new(input: './spec/fixtures/lettuce_input.csv', output: 'my_output.txt', plants: './spec/fixtures/lettuce.yaml')
+    end
+	  after(:each) do
+	  	File.delete('./my_output.txt') if File.exists?('./my_output.txt')
+	  end
+    it 'returns a expected lettuce schedule' do
+      @gardenia.run
+      expect(File.read('./my_output.txt')).to eq(File.read('./spec/fixtures/lettuce_output.txt'))
+    end 
   end
-  it 'has a plants hash that containts Plants' do
-    expect(@gardenia.plants['broccoli'].class.to_s).to eq('Plant')
+  context "all steps in same week" do
+    before(:each) do
+      @gardenia = Gardenia.new(input: './spec/fixtures/all_steps_input.csv', output: 'my_output.txt', plants: './spec/fixtures/all_steps.yaml')
+    end
+	  after(:each) do
+	  	File.delete('./my_output.txt') if File.exists?('./my_output.txt')
+	  end
+    it 'returns schedule with all steps in correct order' do
+      @gardenia.run
+      expect(File.read('./my_output.txt')).to eq(File.read('./spec/fixtures/all_steps_output.txt'))
+    end 
   end
 end
 describe PlantsParser do

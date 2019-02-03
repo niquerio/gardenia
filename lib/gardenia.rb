@@ -20,6 +20,7 @@ class Gardenia
 		File.open(@output, "w"){|file| file.write ScheduleErbRenderer.new(@calendar.weeks).render }
   end
 end
+
 class ScheduleErbRenderer
 	include ERB::Util
 	def initialize(weeks)
@@ -32,6 +33,7 @@ class ScheduleErbRenderer
 		ERB.new(get_template, nil, '-').result(binding)
 	end
 end
+
 class Calendar
 	def initialize
 		@weeks = Array.new
@@ -60,37 +62,44 @@ class Calendar
 		week
 	end
 end
+
 class Week
-	attr_reader :num, :categories
+	attr_reader :num
   def initialize(num)
     @num = num		
 		@categories = Array.new
 	end
 	def add_task(task)
-		cat = find_or_create_category(task.step.heading)
+		cat = find_or_create_category(task.step)
 		cat.add_task(task)
 	end
 	def to_s
 		GardenWeek.new(@num).to_s
 	end
+	def categories
+	  @categories
+		@categories.sort{|a,b| a.order <=> b.order }
+	end
 	private
-	def find_or_create_category(name)
+	def find_or_create_category(step)
 		cat = nil
 		@categories.each do |c|
-			cat = c if c.name == name
+			cat = c if c.name == step.heading
 	  end	
 		if cat.nil?
-			cat = Category.new(name)
+			cat = Category.new(name: step.heading, order: step.order)
 			@categories.push(cat)
 		end
 		cat
 	end
 end
+
 class Category
-	attr_reader :name, :tasks
-	def initialize(name)
+	attr_reader :name, :tasks, :order
+	def initialize(name:, order:)
 		@name = name
 		@tasks = Array.new
+		@order = order
 	end
 	def add_task(task)
 		@tasks.push(task)
@@ -99,6 +108,7 @@ class Category
 		name
 	end
 end
+
 class Task
 	attr_reader :step
 	def initialize(step:, num:)
@@ -131,7 +141,11 @@ class PlantsParser
 	  steps.each do |s|
 			case s["type"]
 			when 'first_flat'
-		    my_steps.push(FirstFlat.new(weeks: s["weeks"], spacing: s["spacing"], plant: plant))
+				if s["spacing"] == 'broadcast'
+		      my_steps.push(FirstFlatBroadcast.new(weeks: s["weeks"], spacing: s["spacing"], plant: plant))
+				else
+		      my_steps.push(FirstFlat.new(weeks: s["weeks"], spacing: s["spacing"], plant: plant))
+				end
 			when 'second_flat'
 		    my_steps.push(SecondFlat.new(weeks: s["weeks"], spacing: s["spacing"], depth: s["depth"], plant: plant))	
 			end

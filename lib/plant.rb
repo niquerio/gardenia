@@ -12,11 +12,12 @@ end
 
 
 class Step
-	attr_reader :heading, :weeks, :plant
+	attr_reader :heading, :weeks, :plant, :order
 	def initialize(heading:,weeks:,plant:)
 		@heading = heading
 		@weeks = weeks
     @plant = plant
+    @order = 0
 	end
 
   def to_s(num)
@@ -35,6 +36,7 @@ class FirstFlat < Step
     @spacing = spacing
 		@description = "at #{spacing} in. spacing"	
     @plant = plant
+    @order = 1
 	end
 
   def to_s(num)
@@ -45,6 +47,12 @@ class FirstFlat < Step
    (num / @plant.germination_rate).ceil
   end
 end
+
+class FirstFlatBroadcast < FirstFlat
+  def to_s(num)
+    "#{@plant.name}: #{amount(num)} seeds broadcast"
+  end
+end
 class SecondFlat < Step
   def initialize(weeks:, spacing:, depth:, plant:)
 		@heading = 'Prick out seedlings into flats' 
@@ -52,6 +60,7 @@ class SecondFlat < Step
     @spacing = spacing
     @depth = depth
     @plant = plant
+    @order = 2
 	end
   def to_s(num)
     "#{@plant.name}: #{amount(num)}+ seedlings at #{@spacing} in. spacing in #{@depth} in. deep flats"
@@ -63,6 +72,7 @@ class HardenOff < Step
 		@heading = 'Harden off'
 		@weeks = 1
     @plant = plant
+    @order = 3
   end
 end
 class Transplant < Step
@@ -70,5 +80,6 @@ class Transplant < Step
 		@heading = 'Transplant'
 		@weeks = 0
     @plant = plant
+    @order = 4
   end
 end

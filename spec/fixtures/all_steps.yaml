@@ -9,25 +9,28 @@
     weeks: 2 
     depth: 6
     spacing: 2
-- name: 'lettuce'
-  germination_rate: 0.8
-  transplant_week: 0
+- name: 'aardvark_plant'
+  germination_rate: 1
+  transplant_week: 2
   steps:
   - type: first_flat
-    spacing: 'broadcast'
-    weeks: 2
-  - type: second_flat
-    weeks: 2 
-    depth: 3
-    spacing: 1.5
-- name: 'tomato'
-  germination_rate: 0.75
+    spacing: 1
+    weeks: 1
+- name: 'badger_plant'
+  germination_rate: 1
   transplant_week: 3
   steps:
   - type: first_flat
     spacing: 1
-    weeks: 4 
+    weeks: 1
   - type: second_flat
-    weeks: 3 
+    weeks: 1 
     depth: 6
     spacing: 2
+- name: 'cat_plant'
+  germination_rate: 1
+  transplant_week: 3
+  steps:
+  - type: first_flat
+    spacing: 1
+    weeks: 1

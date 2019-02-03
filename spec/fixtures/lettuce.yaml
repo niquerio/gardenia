@@ -1,0 +1,11 @@
+- name: 'lettuce'
+  germination_rate: 0.8
+  transplant_week: 0
+  steps:
+  - type: first_flat
+    spacing: 'broadcast'
+    weeks: 2
+  - type: second_flat
+    weeks: 2 
+    depth: 3
+    spacing: 1.5
