@@ -84,13 +84,13 @@ describe GardenWeek do
   end
   describe "to_s" do
     it "prints month and day for without 0 padding for one digit day" do
-      expect(GardenWeek.new.to_s).to eq("Week of May 3")
+      expect(GardenWeek.new.to_s).to eq("Last Frost: Week of May 3")
     end
     it "prints month and day for for appropriate week" do
-      expect(GardenWeek.new(1).to_s).to eq("Week of May 10")
+      expect(GardenWeek.new(1).to_s).to eq("1 Week After Last Frost: Week of May 10")
     end
     it "prints full month" do
-      expect(GardenWeek.new(-1).to_s).to eq("Week of April 26")
+      expect(GardenWeek.new(-1).to_s).to eq("1 Week Before Last Frost: Week of April 26")
     end
   end
 end

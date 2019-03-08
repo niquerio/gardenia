@@ -161,9 +161,25 @@ class GardenWeek
 	def initialize(week=0)
 	  @last_frost = Date.parse("May 3, #{Date.today.year}")	
 		@week = @last_frost + (week*7)
+		@week_num = week
 	end
 
 	def to_s
-		"Week of #{week.strftime("%B %-d")}" 
+		"#{last_frost_distance}: Week of #{week.strftime("%B %-d")}" 
 	end	
+
+	def last_frost_distance
+	  if @week_num < -1	
+	    "#{@week_num.abs} Weeks Before Last Frost"		
+		elsif @week_num == -1
+			"1 Week Before Last Frost"
+	  elsif @week_num == 0
+			"Last Frost"		
+	  elsif @week_num == 1
+			"1 Week After Last Frost"
+		else
+			"#{@week_num} Weeks After Last Frost"
+		end
+	end
+  	
 end
