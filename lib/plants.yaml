@@ -24,7 +24,7 @@
     spacing: 2
 - name: 'cucumber'
   germination_rate: .8
-  transplant_week: 
+  transplant_week: 0
   bed_spacing: 12
   steps:
   - type: first_flat
@@ -44,7 +44,7 @@
     spacing: 2
 - name: 'kale'
   germination_rate: .75
-  transplant_week:  
+  transplant_week: 0 
   bed_spacing: 15
   steps:
   - type: first_flat
@@ -80,7 +80,7 @@
     spacing: 2
 - name: 'pumpkin'
   germination_rate: .75
-  transplant_week: 
+  transplant_week: 0
   bed_spacing: 18
   steps:
   - type: first_flat
@@ -98,3 +98,59 @@
     weeks: 3 
     depth: 6
     spacing: 2
+- name: 'watermelon'
+  germination_rate: .8
+  transplant_week: 4
+  bed_spacing: 18
+  steps:
+  - type: first_flat
+    spacing: 2
+    weeks: 4
+- name: 'carrot'
+  germination_rate: .55
+  transplant_week: -2
+  bed_spacing: 3
+  steps:
+  - type: first_flat
+    spacing: 'broadcast'
+    weeks: 4
+- name: 'raddish'
+  germination_rate: 0.75
+  transplant_week: -2
+  bed_spacing: 2
+  steps:
+  - type: first_flat
+    spacing: 'broadcast'
+    weeks: 1
+- name: 'basil'
+  germination_rate: .8
+  bed_spacing: 6
+  transplant_week: 3
+  steps:
+  - type: first_flat
+    spacing: 1
+    weeks: 6
+- name: 'bean'
+  germination_rate: .7
+  transplant_week: 4
+  bed_spacing: 4
+  steps:
+  - type: first_flat
+    spacing: 'broadcast'
+    weeks: 1
+- name: 'corn'
+  germination_rate: .75
+  transplant_week: 4
+  bed_spacing: 6
+  steps:
+  - type: first_flat
+    spacing: 'broadcast'
+    weeks: 1
+- name: 'cilantro'
+  germination_rate: .5
+  transplant_week: 1
+  bed_spacing: 2
+  steps:
+  - type: first_flat
+    spacing: 'broadcast'
+    weeks: 1

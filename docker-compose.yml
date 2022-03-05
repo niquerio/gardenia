@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    volumes:
+      - .:/app
+      - gem_cache:/gems
+    environment:
+      - WEBLOGIN_ON=false
+volumes:
+  gem_cache:

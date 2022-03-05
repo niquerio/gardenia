@@ -1,8 +1,8 @@
-
 require_relative './plant.rb'
 require 'yaml'
 require 'csv'
 require 'erb'
+require 'byebug'
 class Gardenia 
 	attr_reader :plants
   def initialize(input:, output:, plants:)
@@ -40,6 +40,7 @@ class Calendar
 	end
 	def add_plant(plant:, num:)
 		week_counter = plant.transplant_week
+                puts plant.name
 		plant.steps.reverse.each do |s|
 			week_counter = week_counter - s.weeks
 			week = find_or_create_week(week_counter)
@@ -132,13 +133,13 @@ class PlantsParser
 		@plants_data.each do |p|
 			plant = Plant.new(name: p["name"], germination_rate: p["germination_rate"],
 				transplant_week: p["transplant_week"], steps: Array.new)
-		  plant.steps = generate_steps(p["steps"],plant)
+		        plant.steps = generate_steps(p["steps"],plant)
 			@plants[p["name"]] = plant
 		end
 	end
 	def generate_steps(steps, plant)
 		my_steps = []
-	  steps.each do |s|
+	        steps.each do |s|
 			case s["type"]
 			when 'first_flat'
 				if s["spacing"] == 'broadcast'
